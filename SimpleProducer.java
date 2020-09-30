@@ -33,20 +33,32 @@ public class SimpleProducer {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
 
-        ProducerRecord<String, String> record = new 
-            ProducerRecord<String, String>(topicName,
-                                           "testKey",
-                                           "Are you still there, Watson?");
 
+        //fire-and-forget
         try {
+            ProducerRecord<String, String> record = new 
+                ProducerRecord<String, String>(topicName,
+                                               "testKey",
+                                               "fire-and-forget message");
             producer.send(record);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        //producer.send(new ProducerRecord<String, String>(topicName, 
-        //                                                "testKey",
-        //                                                "Are you there Watson?"));
+        //Synchronous send
+        try {
+            ProducerRecord<String, String> record = new 
+                ProducerRecord<String, String>(topicName,
+                                               "testKey",
+                                               "Synchronously sent message");
+            producer.send(record).get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+
+        //Asynchronous send
+
 
         producer.close();
 
