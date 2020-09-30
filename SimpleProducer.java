@@ -33,11 +33,24 @@ public class SimpleProducer {
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
 
-        producer.send(new ProducerRecord<String, String>(topicName, 
-                                                         "testKey",
-                                                         "Are you there Watson?"));
+        ProducerRecord<String, String> record = new 
+            ProducerRecord<String, String>(topicName,
+                                           "testKey",
+                                           "Are you still there, Watson?");
+
+        try {
+            producer.send(record);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //producer.send(new ProducerRecord<String, String>(topicName, 
+        //                                                "testKey",
+        //                                                "Are you there Watson?"));
 
         producer.close();
 
     }
 }
+
+
