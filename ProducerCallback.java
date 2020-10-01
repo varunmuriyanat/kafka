@@ -6,7 +6,6 @@ import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.clients.producer.RecordMetadata;
 
 public class ProducerCallback implements Callback {
-    @override
     public void onCompletion(RecordMetadata recordMetadata, Exception e) {
         if (e != null) {
             e.printStackTrace();
@@ -47,7 +46,7 @@ public class ProducerCallback implements Callback {
             ProducerRecord<String, String> record = new 
                 ProducerRecord<String, String>(topicName,
                                                "testKey",
-                                               "Synchronously sent message");
+                                               "Asynchronously sent message");
             producer.send(record, new ProducerCallback());
         } catch (Exception e) {
             e.printStackTrace();
