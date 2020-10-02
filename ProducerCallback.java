@@ -40,7 +40,8 @@ public class ProducerCallback implements Callback {
         props.put("value.serializer", 
                   "org.apache.kafka.common.serialization.StringSerializer");
 
-        Producer<String, String> producer = new KafkaProducer<String, String>(props);
+        Producer<String, String> producer = new 
+                KafkaProducer<String, String>(props);
 
         //Asynchronous send
         try {
@@ -53,9 +54,6 @@ public class ProducerCallback implements Callback {
             e.printStackTrace();
         }
         
-
-
-
         producer.close();
 
     }
